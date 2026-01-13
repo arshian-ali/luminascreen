@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate White Screen | Light Source Tool</title>
+    <meta name="description" content="A premium online white screen tool for lighting, screen testing, and photography. Features adjustable color temperature, brightness, and RGB controls.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Light Source Background -->
+    <div id="light-source" class="light-source"></div>
+
+    <!-- UI Overlay -->
+    <main class="ui-container">
+        
+        <!-- Header / Logo -->
+        <header class="header hide-on-idle">
+            <div class="logo">
+                <i class="ri-sun-fill"></i>
+                <span>Lumina<span class="highlight">Screen</span></span>
+            </div>
+            <div class="header-actions">
+                 <!-- Full screen toggle usually here or in dock -->
+            </div>
+        </header>
+
+        <!-- Floating Control Dock -->
+        <aside class="control-dock hide-on-idle">
+            
+            <!-- Tab Navigation (Compact) -->
+            <nav class="dock-nav">
+                <button class="nav-btn active" data-tab="presets" title="Presets"><i class="ri-palette-line"></i></button>
+                <button class="nav-btn" data-tab="custom" title="Custom Color"><i class="ri-sound-module-line"></i></button>
+                <button class="nav-btn" data-tab="lighting" title="Lighting"><i class="ri-lightbulb-flash-line"></i></button>
+                <button class="nav-btn" data-tab="tools" title="Tools"><i class="ri-tools-line"></i></button>
+                <div class="divider"></div>
+                <button class="nav-btn action-btn" id="btn-fullscreen" title="Toggle Fullscreen"><i class="ri-fullscreen-line"></i></button>
+            </nav>
+
+            <!-- Tab Content -->
+            <div class="dock-content">
+                
+                <!-- Presets Tab -->
+                <section id="tab-presets" class="tab-pane active">
+                    <h3>Quick Colors</h3>
+                    <div class="color-grid">
+                        <button class="color-swatch" style="--swatch: #FFFFFF" data-color="#FFFFFF" title="White"></button>
+                        <button class="color-swatch" style="--swatch: #000000" data-color="#000000" title="Black"></button>
+                        <button class="color-swatch" style="--swatch: #FF0000" data-color="#FF0000" title="Red"></button>
+                        <button class="color-swatch" style="--swatch: #00FF00" data-color="#00FF00" title="Green"></button>
+                        <button class="color-swatch" style="--swatch: #0000FF" data-color="#0000FF" title="Blue"></button>
+                        <button class="color-swatch" style="--swatch: #FFFF00" data-color="#FFFF00" title="Yellow"></button>
+                        <button class="color-swatch" style="--swatch: #FFA500" data-color="#FFA500" title="Orange"></button>
+                        <button class="color-swatch" style="--swatch: #FFC0CB" data-color="#FFC0CB" title="Pink"></button>
+                        <button class="color-swatch" style="--swatch: #800080" data-color="#800080" title="Purple"></button>
+                    </div>
+                </section>
+
+                <!-- Custom Color Tab -->
+                <section id="tab-custom" class="tab-pane">
+                    <h3>Custom Color</h3>
+                    
+                    <div class="input-group">
+                        <label>Color Picker</label>
+                        <div class="picker-wrapper">
+                            <input type="color" id="native-picker" value="#FFFFFF">
+                            <span id="hex-display">#FFFFFF</span>
+                        </div>
+                    </div>
+
+                    <div class="rgb-inputs">
+                        <div class="rgb-field">
+                            <label>R</label>
+                            <input type="number" min="0" max="255" id="input-r" value="255">
+                        </div>
+                        <div class="rgb-field">
+                            <label>G</label>
+                            <input type="number" min="0" max="255" id="input-g" value="255">
+                        </div>
+                        <div class="rgb-field">
+                            <label>B</label>
+                            <input type="number" min="0" max="255" id="input-b" value="255">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Lighting Tab -->
+                <section id="tab-lighting" class="tab-pane">
+                    <h3>Studio Lighting</h3>
+                    
+                    <div class="slider-group">
+                        <div class="label-row">
+                            <label>Temperature</label>
+                            <span id="kelvin-val">6500K</span>
+                        </div>
+                        <input type="range" id="kelvin-slider" min="1000" max="12000" step="100" value="6500">
+                        <div class="slider-track-visual temperature-gradient"></div>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="label-row">
+                            <label>Brightness</label>
+                            <span id="brightness-val">100%</span>
+                        </div>
+                        <input type="range" id="brightness-slider" min="0" max="100" value="100">
+                    </div>
+                </section>
+
+                <!-- Tools Tab -->
+                <section id="tab-tools" class="tab-pane">
+                    <h3>Tools</h3>
+                    
+                    <div class="tool-actions">
+                        <button id="btn-download" class="tool-btn">
+                            <i class="ri-download-line"></i>
+                            Download Image
+                        </button>
+                    </div>
+                    
+                    <div class="info-readout">
+                        <p><span class="label">Res:</span> <span id="res-display">1920 x 1080</span></p>
+                    </div>
+                </section>
+
+            </div>
+        </aside>
+
+        <!-- Hints -->
+        <div class="hint-toast hide-on-idle">Press <b>ESC</b> to exit full screen</div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
